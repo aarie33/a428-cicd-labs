@@ -22,7 +22,9 @@ pipeline {
         stage('Deliver') {
             steps {
                 sh './jenkins/scripts/deliver.sh'
-                input message: 'Finished using the website? (Click "Proceed" to continue)'
+                // input message: 'Finished using the website? (Click "Proceed" to continue)'
+                echo 'Application is running. It will be available for 1 minute before shutting down.'
+                sleep(time: 1, unit: 'MINUTES')
                 sh './jenkins/scripts/kill.sh'
             }
         }
